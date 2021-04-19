@@ -136,6 +136,14 @@ define Device/glinet_microuter-n300
   DEVICE_MODEL := microuter-N300
   SUPPORTED_DEVICES += microuter-n300
 endef
+TARGET_DEVICES += glinet_gl-mt300n-v2
+
+define Device/glinet_microuter-n300
+  IMAGE_SIZE := 16064k
+  DEVICE_VENDOR := GL.iNet
+  DEVICE_MODEL := microuter-N300
+  SUPPORTED_DEVICES += microuter-n300
+endef
 TARGET_DEVICES += glinet_microuter-n300
 
 define Device/glinet_vixmini
@@ -274,6 +282,19 @@ define Device/netgear_r6020
   DEVICE_MODEL := R6020
   DEVICE_PACKAGES := kmod-mt76x2
   SERCOMM_HWNAME := R6020
+  SERCOMM_HWID := CFR
+  SERCOMM_HWVER := A001
+  SERCOMM_SWVER := 0x0040
+  SERCOMM_PAD := 576k
+endef
+TARGET_DEVICES += netgear_r6020
+
+define Device/netgear_r6080
+  $(Device/netgear_sercomm_nor)
+  IMAGE_SIZE := 7552k
+  DEVICE_MODEL := R6080
+  DEVICE_PACKAGES := kmod-mt76x2
+  SERCOMM_HWNAME := R6080
   SERCOMM_HWID := CFR
   SERCOMM_HWVER := A001
   SERCOMM_SWVER := 0x0040
@@ -485,6 +506,56 @@ define Device/tplink_re305-v1
   DEVICE_PACKAGES := kmod-mt76x2
   TPLINK_BOARD_ID := RE305-V1
 endef
+TARGET_DEVICES += tplink_archer-c50-v4
+
+define Device/tplink_re200-v2
+  $(Device/tplink-safeloader)
+  IMAGE_SIZE := 7808k
+  DEVICE_MODEL := RE200
+  DEVICE_VARIANT := v2
+  DEVICE_PACKAGES := kmod-mt76x0e
+  TPLINK_BOARD_ID := RE200-V2
+endef
+TARGET_DEVICES += tplink_re200-v2
+
+define Device/tplink_re200-v3
+  $(Device/tplink-safeloader)
+  IMAGE_SIZE := 7808k
+  DEVICE_MODEL := RE200
+  DEVICE_VARIANT := v3
+  DEVICE_PACKAGES := kmod-mt76x0e
+  TPLINK_BOARD_ID := RE200-V3
+endef
+TARGET_DEVICES += tplink_re200-v3
+
+define Device/tplink_re200-v4
+  $(Device/tplink-safeloader)
+  IMAGE_SIZE := 7808k
+  DEVICE_MODEL := RE200
+  DEVICE_VARIANT := v4
+  DEVICE_PACKAGES := kmod-mt76x0e
+  TPLINK_BOARD_ID := RE200-V4
+endef
+TARGET_DEVICES += tplink_re200-v4
+
+define Device/tplink_re220-v2
+  $(Device/tplink-safeloader)
+  IMAGE_SIZE := 7808k
+  DEVICE_MODEL := RE220
+  DEVICE_VARIANT := v2
+  DEVICE_PACKAGES := kmod-mt76x0e
+  TPLINK_BOARD_ID := RE220-V2
+endef
+TARGET_DEVICES += tplink_re220-v2
+
+define Device/tplink_re305-v1
+  $(Device/tplink-safeloader)
+  IMAGE_SIZE := 6016k
+  DEVICE_MODEL := RE305
+  DEVICE_VARIANT := v1
+  DEVICE_PACKAGES := kmod-mt76x2
+  TPLINK_BOARD_ID := RE305-V1
+endef
 TARGET_DEVICES += tplink_re305-v1
 
 define Device/tplink_tl-mr3020-v3
@@ -603,6 +674,63 @@ define Device/tplink_tl-wr840n-v5
 endef
 TARGET_DEVICES += tplink_tl-wr840n-v5
 
+define Device/tplink_tl-wr840n-v6
+  $(Device/tplink-v2)
+  SOC := mt7628an
+  IMAGE_SIZE := 3968k
+  DEVICE_VENDOR := TP-Link
+  DEVICE_MODEL := TL-WR840N
+  DEVICE_VARIANT := v6
+  TPLINK_FLASHLAYOUT := 4Mmtk
+  TPLINK_HWID := 0x08400006
+  TPLINK_HWREV := 0x1
+  TPLINK_HWREVADD := 0x6
+  TPLINK_HVERSION := 3
+  IMAGES := sysupgrade.bin tftp-recovery.bin
+  DEFAULT := n
+  SUPPORTED_DEVICES += tl-wr840n-v6
+  IMAGE/tftp-recovery.bin := pad-extra 64k | $$(IMAGE/factory.bin)
+endef
+TARGET_DEVICES += tplink_tl-wr840n-v6
+
+define Device/tplink_tl-wr840n-v6.1
+  $(Device/tplink-v2)
+  SOC := mt7628an
+  IMAGE_SIZE := 3968k
+  DEVICE_VENDOR := TP-Link
+  DEVICE_MODEL := TL-WR840N
+  DEVICE_VARIANT := v6.1
+  TPLINK_FLASHLAYOUT := 4Mmtk
+  TPLINK_HWID := 0x08400006
+  TPLINK_HWREV := 0x1
+  TPLINK_HWREVADD := 0x6
+  TPLINK_HVERSION := 3
+  SUPPORTED_DEVICES += tl-wr840n-v6.1
+  DEFAULT := n
+  IMAGE/tftp-recovery.bin := pad-extra 64k | $$(IMAGE/factory.bin)
+  IMAGES := sysupgrade.bin tftp-recovery.bin
+endef
+TARGET_DEVICES += tplink_tl-wr840n-v6.1
+
+define Device/tplink_tl-wr840n-v6.2
+  $(Device/tplink-v2)
+  SOC := mt7628an
+  IMAGE_SIZE := 3968k
+  DEVICE_VENDOR := TP-Link
+  DEVICE_MODEL := TL-WR840N
+  DEVICE_VARIANT := v6.2
+  TPLINK_FLASHLAYOUT := 4Mmtk
+  TPLINK_HWID := 0x08400006
+  TPLINK_HWREV := 0x1
+  TPLINK_HWREVADD := 0x7
+  TPLINK_HVERSION := 3
+  SUPPORTED_DEVICES += tl-wr840n-v6.2
+  DEFAULT := n
+  IMAGES := sysupgrade.bin tftp-recovery.bin
+  IMAGE/tftp-recovery.bin := pad-extra 64k | $$(IMAGE/factory.bin)
+endef
+TARGET_DEVICES += tplink_tl-wr840n-v6.2
+
 define Device/tplink_tl-wr841n-v13
   $(Device/tplink-v2)
   IMAGE_SIZE := 7808k
@@ -631,6 +759,17 @@ define Device/tplink_tl-wr841n-v14
   DEFAULT := n
 endef
 TARGET_DEVICES += tplink_tl-wr841n-v14
+
+define Device/mediatek_br-323
+  SOC := mt7628an
+  BLOCKSIZE := 64k
+  IMAGE_SIZE := 7872k
+  DEVICE_VENDOR := MediaTek
+  DEVICE_MODEL := BR-323
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-usb-ledtrig-usbport
+  SUPPORTED_DEVICES += mediatek_br-323
+endef
+TARGET_DEVICES += mediatek_br-323
 
 define Device/tplink_tl-wr842n-v5
   $(Device/tplink-v2)
@@ -795,6 +934,15 @@ define Device/xiaomi_mi-router-4c
   DEVICE_PACKAGES := uboot-envtools
 endef
 TARGET_DEVICES += xiaomi_mi-router-4c
+
+define Device/xiaomi_miwifi-nano
+  IMAGE_SIZE := 16064k
+  DEVICE_VENDOR := Xiaomi
+  DEVICE_MODEL := MiWiFi Nano
+  DEVICE_PACKAGES := uboot-envtools
+  SUPPORTED_DEVICES += miwifi-nano
+endef
+TARGET_DEVICES += xiaomi_miwifi-nano
 
 define Device/xiaomi_miwifi-nano
   IMAGE_SIZE := 16064k
